@@ -1,6 +1,7 @@
 const util = require('node:util');
 const exec = util.promisify(require('node:child_process').exec);
 let fs = require('fs');
+const os = require('os');
 
 const available = "/etc/nginx/sites-available/"
 const enabled = "/etc/nginx/sites-enabled/"
@@ -127,5 +128,37 @@ async function hasServer(hosts) {
 
     }
 }
+
+function installNginx() {
+    const platform = os.platform();
+
+    if (platform === 'linux') {
+        exec('sudo apt-get install nginx'); // For Debian/Ubuntu
+    } else if (platform === 'darwin') {
+        exec('brew install nginx'); // For macOS
+    } else if (platform === 'win32') {
+        exec('choco install nginx'); // For Windows, assuming Chocolatey is installed
+    } else {
+        console.log('Unsupported OS');
+    }
+}
+
+function checkAndInstallNginx() {
+    exec('nginx -v', (error) => {
+        if (error) {
+            console.log('Nginx not found, installing...');
+            installNginx();
+        } else {
+            console.log('Nginx is already installed.');
+        }
+    });
+}
+
+// checkAndInstallNginx();
+
+
+process.on('certificateCreated', (host) => {
+    createServer(host)
+});
 
 module.exports = { createServer, deleteServer }
