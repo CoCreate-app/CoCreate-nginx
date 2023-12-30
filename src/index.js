@@ -168,7 +168,15 @@ function init() {
     });
 }
 
-function updateSudoers(newRules) {
+function updateSudoers() {
+    const newRules = [
+        'appuser ALL=(ALL) NOPASSWD: /bin/ln -s /etc/nginx/sites-available/* /etc/nginx/sites-enabled/*',
+        'appuser ALL=(ALL) NOPASSWD: /usr/sbin/nginx -t',
+        'appuser ALL=(ALL) NOPASSWD: /bin/systemctl reload nginx',
+        // Include any specific command or script you've prepared for safely writing to sites-available
+        // 'appuser ALL=(ALL) NOPASSWD: /path/to/your/specific_command_or_script'
+    ];
+
     // Convert array of rules into a single string, each rule separated by a newline
     const rulesStr = newRules.join("\\n");
     const cmd = `echo '${rulesStr}' | sudo EDITOR='tee -a' visudo`;
@@ -186,13 +194,6 @@ function updateSudoers(newRules) {
     });
 }
 
-const newSudoRules = [
-    'appuser ALL=(ALL) NOPASSWD: /bin/ln -s /etc/nginx/sites-available/* /etc/nginx/sites-enabled/*',
-    'appuser ALL=(ALL) NOPASSWD: /usr/sbin/nginx -t',
-    'appuser ALL=(ALL) NOPASSWD: /bin/systemctl reload nginx',
-    // Include any specific command or script you've prepared for safely writing to sites-available
-    'appuser ALL=(ALL) NOPASSWD: /path/to/your/specific_command_or_script'
-];
 
 
 init();
