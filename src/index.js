@@ -60,37 +60,6 @@ server {
         }
     }
 
-
-    if (!fs.existsSync(`${enabled}main`)) {
-        let main = `server {
-            listen 80 default_server;
-            listen [::]:80 default_server;
-        
-        
-            server_name _;
-            return 301 https://$host$request_uri;
-        }`
-
-        fs.writeFileSync(`${available}main`, main)
-        await exec(`sudo ln -s ${available}main ${enabled}`);
-
-        if (fs.existsSync(`${enabled}default`))
-            fs.unlinkSync(`${enabled}default`)
-        if (fs.existsSync(`${available}default`))
-            fs.unlinkSync(`${available}default`)
-
-        let test = await exec(`sudo nginx -t`);
-        if (test.stderr.includes('test is successful')) {
-            await exec(`sudo systemctl reload nginx`);
-            console.log('main test passed reloading nginx')
-            response['main'] = true
-        } else {
-            console.log('main test failed')
-            response['main'] = false
-        }
-
-    }
-
     return response
 }
 
@@ -139,6 +108,52 @@ async function installNginx() {
             await exec('sudo apt-get update && sudo apt-get install -y nginx');
             await exec("sudo ufw allow 'Nginx Full'");
             await exec('sudo chmod 777 /etc/nginx/sites-available');
+            await exec('sudo chmod 777 /etc/nginx/sites-enabled');
+            if (!fs.existsSync(`${enabled}main`)) {
+                //         let main = `server {
+                //     listen 80 default_server;
+                //     listen [::]:80 default_server;
+
+
+                //     server_name _;
+                // }`
+                let main = `server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+
+    location / {
+        proxy_pass http://localhost:3000; # Forward traffic to your app on port 3000
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+}`
+
+                fs.writeFileSync(`${available}main`, main)
+                await exec(`sudo ln -s ${available}main ${enabled}`);
+
+                if (fs.existsSync(`${enabled}default`))
+                    fs.unlinkSync(`${enabled}default`)
+                if (fs.existsSync(`${available}default`))
+                    fs.unlinkSync(`${available}default`)
+
+                let test = await exec(`sudo nginx -t`);
+                if (test.stderr.includes('test is successful')) {
+                    await exec(`sudo systemctl reload nginx`);
+                    console.log('main test passed reloading nginx')
+                    response['main'] = true
+                } else {
+                    console.log('main test failed')
+                    response['main'] = false
+                }
+
+            }
+
         } else if (platform === 'darwin') {
             // TODO: For macOS
             await exec('brew install nginx');
@@ -152,7 +167,7 @@ async function installNginx() {
         console.log('Nginx installed successfully');
 
     } catch (error) {
-        console.error('Failed to Nginx:', error);
+        console.error('Failed to Nginx:');
     }
 }
 
@@ -192,8 +207,6 @@ function updateSudoers() {
         console.log(`Sudoers updated: ${stdout}`);
     });
 }
-
-
 
 init();
 
