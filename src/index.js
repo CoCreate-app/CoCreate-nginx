@@ -6,8 +6,9 @@ const os = require('os');
 const available = "/etc/nginx/sites-available/"
 const enabled = "/etc/nginx/sites-enabled/"
 class CoCreateNginx {
-    constructor() {
-        this.init()
+    constructor(cluster) {
+        if (cluster.worker.id === 1)
+            this.init()
     }
 
     init() {
