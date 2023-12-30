@@ -37,12 +37,13 @@ server {
     }
 
     listen 443 ssl http2;
-    ssl_certificate /etc/letsencrypt/live/${host}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/${host}/privkey.pem;
+    ssl_certificate /home/ubuntu/CoCreateWS/certificates/${host}/fullchain.pem;
+    ssl_certificate_key /home/ubuntu/CoCreateWS/certificates/${host}/privkey.pem;
   
 }
 
 `;
+
         fs.writeFileSync(`${available}${host}`, server)
 
         if (!fs.existsSync(`${enabled}${host}`))
@@ -113,7 +114,7 @@ async function hasServer(hosts) {
         hosts = [hosts]
     for (let host of hosts) {
         const { stdout, stderr } = await exec(`grep -Ri 'server_name.*${host}' /etc/nginx/sites-enabled`)
-        if (err) {
+        if (stderr) {
             console.error(`exec error: ${err}`);
             return;
         }
@@ -129,21 +130,36 @@ async function hasServer(hosts) {
     }
 }
 
-function installNginx() {
-    const platform = os.platform();
+async function installNginx() {
+    try {
+        const platform = os.platform();
 
-    if (platform === 'linux') {
-        exec('sudo apt-get install nginx'); // For Debian/Ubuntu
-    } else if (platform === 'darwin') {
-        exec('brew install nginx'); // For macOS
-    } else if (platform === 'win32') {
-        exec('choco install nginx'); // For Windows, assuming Chocolatey is installed
-    } else {
-        console.log('Unsupported OS');
+        if (platform === 'linux') {
+            // For Debian/Ubuntu
+            await exec('sudo apt-get update && sudo apt-get install -y nginx');
+            await exec('sudo chmod 775 /etc/nginx/sites-available');
+        } else if (platform === 'darwin') {
+            // TODO: For macOS
+            await exec('brew install nginx');
+        } else if (platform === 'win32') {
+            // TODO: For Windows, assuming Chocolatey is installed
+            await exec('choco install nginx');
+        } else {
+            console.log('Unsupported OS');
+        }
+
+        await exec("sudo ufw allow 'Nginx Full'");
+        await exec('sudo chmod 777 /etc/nginx/sites-available');
+
+        console.log('Nginx installed successfully');
+        createServer('cocreate.site')
+
+    } catch (error) {
+        console.error('Failed to Nginx:', error);
     }
 }
 
-function checkAndInstallNginx() {
+function init() {
     exec('nginx -v', (error) => {
         if (error) {
             console.log('Nginx not found, installing...');
@@ -154,11 +170,10 @@ function checkAndInstallNginx() {
     });
 }
 
-// checkAndInstallNginx();
-
+init();
 
 process.on('certificateCreated', (host) => {
     createServer(host)
 });
 
-module.exports = { createServer, deleteServer }
+module.exports = { createServer, hasServer, deleteServer }
