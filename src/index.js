@@ -150,7 +150,6 @@ async function installNginx() {
         }
 
         console.log('Nginx installed successfully');
-        createServer('cocreate.site')
 
     } catch (error) {
         console.error('Failed to Nginx:', error);
