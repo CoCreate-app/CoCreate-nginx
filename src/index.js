@@ -137,7 +137,8 @@ async function installNginx() {
         if (platform === 'linux') {
             // For Debian/Ubuntu
             await exec('sudo apt-get update && sudo apt-get install -y nginx');
-            await exec('sudo chmod 775 /etc/nginx/sites-available');
+            await exec("sudo ufw allow 'Nginx Full'");
+            await exec('sudo chmod 777 /etc/nginx/sites-available');
         } else if (platform === 'darwin') {
             // TODO: For macOS
             await exec('brew install nginx');
@@ -147,9 +148,6 @@ async function installNginx() {
         } else {
             console.log('Unsupported OS');
         }
-
-        await exec("sudo ufw allow 'Nginx Full'");
-        await exec('sudo chmod 777 /etc/nginx/sites-available');
 
         console.log('Nginx installed successfully');
         createServer('cocreate.site')
@@ -169,6 +167,33 @@ function init() {
         }
     });
 }
+
+function updateSudoers(newRules) {
+    // Convert array of rules into a single string, each rule separated by a newline
+    const rulesStr = newRules.join("\\n");
+    const cmd = `echo '${rulesStr}' | sudo EDITOR='tee -a' visudo`;
+
+    exec(cmd, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error: ${error}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`Stderr: ${stderr}`);
+            return;
+        }
+        console.log(`Sudoers updated: ${stdout}`);
+    });
+}
+
+const newSudoRules = [
+    'appuser ALL=(ALL) NOPASSWD: /bin/ln -s /etc/nginx/sites-available/* /etc/nginx/sites-enabled/*',
+    'appuser ALL=(ALL) NOPASSWD: /usr/sbin/nginx -t',
+    'appuser ALL=(ALL) NOPASSWD: /bin/systemctl reload nginx',
+    // Include any specific command or script you've prepared for safely writing to sites-available
+    'appuser ALL=(ALL) NOPASSWD: /path/to/your/specific_command_or_script'
+];
+
 
 init();
 
