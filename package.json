@@ -4,7 +4,6 @@
   "description": "An intergration with Nginx and CoCreateJS.",
   "keywords": [
     "nginx",
-    "chain-functions",
     "cocreate",
     "low-code-framework",
     "no-code-framework",
