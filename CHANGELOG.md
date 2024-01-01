@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.2...v1.1.3) (2024-01-01)
+
+
+### Bug Fixes
+
+* relocated main nginx config to init ([44c4545](https://github.com/CoCreate-app/CoCreate-nginx/commit/44c454511bf9f1c9ef8a003e5a331aa219116019))
+
 ## [1.1.2](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.1...v1.1.2) (2024-01-01)
 
 
