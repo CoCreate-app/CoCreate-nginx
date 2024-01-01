@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.4...v1.1.5) (2024-01-01)
+
+
+### Bug Fixes
+
+* aaded cluster to check if worker == 1 to init once ([bf6c464](https://github.com/CoCreate-app/CoCreate-nginx/commit/bf6c46465fd38290d349ff2c3f0aad0b28de47e0))
+
 ## [1.1.4](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.3...v1.1.4) (2024-01-01)
 
 
