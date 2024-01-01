@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.1...v1.1.2) (2024-01-01)
+
+
+### Bug Fixes
+
+* removed createServer test ([7a73899](https://github.com/CoCreate-app/CoCreate-nginx/commit/7a738994df49cca8d052bacd62dce476e3c47081))
+
 ## [1.1.1](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.0...v1.1.1) (2023-12-31)
 
 
