@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.3...v1.1.4) (2024-01-01)
+
+
+### Bug Fixes
+
+* converted to class ([45b7ea5](https://github.com/CoCreate-app/CoCreate-nginx/commit/45b7ea5bd30381137f979052312b4f53f5f438f9))
+
 ## [1.1.3](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.2...v1.1.3) (2024-01-01)
 
 
