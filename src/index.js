@@ -25,7 +25,6 @@ class CoCreateNginx {
                     console.log('Nginx not found, installing...');
                     await exec('sudo apt-get update && sudo apt-get install -y nginx');
                     await exec("sudo ufw allow 'Nginx Full'");
-                    console.log('Nginx installed successfully');
                 }
 
                 let stream = `user www-data;
@@ -133,9 +132,9 @@ stream {
                 let test = await exec(`sudo nginx -t`);
                 if (test.stderr.includes('test is successful')) {
                     await exec(`sudo systemctl reload nginx`);
-                    console.log('main test passed reloading nginx')
+                    console.log('Nginx installed successfully');
                 } else {
-                    console.log('main test failed')
+                    console.log('Nginx config test failed')
                 }
 
             } else if (platform === 'darwin') {
