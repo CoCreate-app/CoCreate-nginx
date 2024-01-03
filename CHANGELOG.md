@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.5...v1.2.0) (2024-01-03)
+
+
+### Bug Fixes
+
+* added licencing details ([228d79b](https://github.com/CoCreate-app/CoCreate-nginx/commit/228d79bfb1ca48d5b0eda92dff547304b9df2055))
+* update configs ([f6b8788](https://github.com/CoCreate-app/CoCreate-nginx/commit/f6b8788962a34df4aa4e449b0ad6154b9266e2b4))
+
+
+### Features
+
+* adds stream to handle default 443 ([899089a](https://github.com/CoCreate-app/CoCreate-nginx/commit/899089a74d7c364a65cedcec63d77c48ff886613))
+* config nginx to pass https request that have no server block defined to the application, '@cocreate/server' and '@cocreate/acme' will get or create sll and update nginx stream and server block. At this point nginx will handle ssl termination ([d4bbe18](https://github.com/CoCreate-app/CoCreate-nginx/commit/d4bbe185a63b49a53037a89594faead11f849b46))
+
 ## [1.1.5](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.4...v1.1.5) (2024-01-01)
 
 
