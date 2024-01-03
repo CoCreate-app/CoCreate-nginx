@@ -11,25 +11,22 @@ class CoCreateNginx {
             this.init()
     }
 
-    init() {
-        exec('nginx -v', (error) => {
-            if (error) {
-                console.log('Nginx not found, installing...');
-                this.installNginx();
-            } else {
-                console.log('Nginx is already installed.');
-            }
-        });
-    }
-
-    async installNginx() {
+    async init() {
         try {
             const platform = os.platform();
 
             if (platform === 'linux') {
                 // For Debian/Ubuntu
-                await exec('sudo apt-get update && sudo apt-get install -y nginx');
-                await exec("sudo ufw allow 'Nginx Full'");
+                try {
+                    await exec('nginx -v');
+                    console.log('Nginx is already installed.');
+                } catch (error) {
+                    console.log('Nginx not found, installing...');
+                    await exec('sudo apt-get update && sudo apt-get install -y nginx');
+                    await exec("sudo ufw allow 'Nginx Full'");
+                    console.log('Nginx installed successfully');
+                }
+
                 await exec('sudo chmod 777 /etc/nginx/nginx.conf');
 
                 let stream = `user www-data;
@@ -48,34 +45,36 @@ http {
 }
 
 stream {
-    # Handling of SSL traffic on port 443
     server {
         listen 443;
-        
-        # Use the nginx variable $ssl_preread_server_name to route based on SNI
-        ssl_preread on;
-        
-        # Forward traffic to the respective server based on server_name
-        # Here we are using a dummy address for default_server as an example
-        # Replace it with the actual address and port of your Node.js app
-        proxy_pass $ssl_preread_server_name:8443;
-        
-        # Define a default server if no server block matches
-        default_server 127.0.0.1:8443; # Node.js app listening on port 8443
+        proxy_pass 127.0.0.1:8443; # Node.js app listening on port 8443
     }
 }
 `
-                fs.writeFileSync('/etc/nginx/nginx.conf', stream)
+                // fs.writeFileSync('/etc/nginx/nginx.conf', stream)
 
                 await exec('sudo chmod 777 /etc/nginx/sites-available');
                 await exec('sudo chmod 777 /etc/nginx/sites-enabled');
                 if (!fs.existsSync(`${enabled}main`)) {
                     let main = `server {
-                        listen 80 default_server;
-                        listen [::]:80 default_server;
-                        server_name _;
-                        return 301 https://$host$request_uri;
-                    }`
+    listen 80;
+    listen [::]:80;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        proxy_buffer_size 128k;
+        proxy_buffers 4 256k;
+        proxy_busy_buffers_size 256k;
+    }
+}
+`
 
                     fs.writeFileSync(`${available}main`, main)
                     await exec(`sudo ln -s ${available}main ${enabled}`);
@@ -89,10 +88,8 @@ stream {
                     if (test.stderr.includes('test is successful')) {
                         await exec(`sudo systemctl reload nginx`);
                         console.log('main test passed reloading nginx')
-                        response['main'] = true
                     } else {
                         console.log('main test failed')
-                        response['main'] = false
                     }
 
                 }
@@ -107,10 +104,9 @@ stream {
                 console.log('Unsupported OS');
             }
 
-            console.log('Nginx installed successfully');
 
         } catch (error) {
-            console.error('Failed to Nginx:');
+            console.error('Failed to Nginx: ', error);
         }
     }
 
@@ -145,8 +141,8 @@ server {
     }
 
     listen 443 ssl http2;
-    ssl_certificate /home/ubuntu/CoCreateWS/certificates/${host}/fullchain.pem;
-    ssl_certificate_key /home/ubuntu/CoCreateWS/certificates/${host}/privkey.pem;
+    ssl_certificate /etc/certificates/${host}/fullchain.pem;
+    ssl_certificate_key /etc/certificates/${host}/private-key.pem;
 }
 
 `;
