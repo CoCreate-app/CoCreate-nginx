@@ -132,7 +132,7 @@ stream {
                 let test = await exec(`sudo nginx -t`);
                 if (test.stderr.includes('test is successful')) {
                     await exec(`sudo systemctl reload nginx`);
-                    console.log('Nginx installed successfully!');
+                    console.log('Nginx is running!');
                 } else {
                     console.log('Nginx config test failed')
                 }
