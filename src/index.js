@@ -163,7 +163,7 @@ stream {
             const domain = hostParts[0];
             const tld = hostParts[1];
             const stream = fs.readFileSync(conf, 'utf8');
-            const modifiedStream = stream.replace('default nodejs_ssl;', `\t\t${host} nginx_ssl;\ndefault nodejs_ssl;`);
+            const modifiedStream = stream.replace('default nodejs_ssl;', `${host} nginx_ssl;\n\t\tdefault nodejs_ssl;`);
             fs.writeFileSync(conf, modifiedStream);
 
             const server = `
