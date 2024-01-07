@@ -20,7 +20,6 @@ class CoCreateNginx {
                 // For Debian/Ubuntu
                 try {
                     await exec('nginx -v');
-                    console.log('Nginx is already installed.');
                 } catch (error) {
                     console.log('Nginx not found, installing...');
                     await exec('sudo apt-get update && sudo apt-get install -y nginx');
@@ -201,10 +200,10 @@ server {
             let test = await exec(`sudo nginx -t`);
             if (test.stderr.includes('test is successful')) {
                 await exec(`sudo systemctl reload nginx`);
-                console.log(host, 'test passed reloading nginx')
+                console.log(`Nginx reloaded successfully for ${host}!`)
                 response[host] = true
             } else {
-                console.log(host, 'test failed')
+                console.log(host, `Nginx config test failed for ${host}`)
                 response[host] = false
             }
         }
@@ -217,6 +216,7 @@ server {
         if (!Array.isArray(hosts))
             hosts = [hosts]
         for (let host of hosts) {
+            // TODO: delete from nginx.conf stream.map
             if (fs.existsSync(`${enabled}${host}`))
                 fs.unlinkSync(`${enabled}${host}`)
             if (fs.existsSync(`${available}${host}`))
