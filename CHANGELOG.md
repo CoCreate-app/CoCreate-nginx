@@ -1,3 +1,19 @@
+# [1.3.0](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.2.0...v1.3.0) (2024-01-08)
+
+
+### Bug Fixes
+
+* improved console.logging ([0b20ad3](https://github.com/CoCreate-app/CoCreate-nginx/commit/0b20ad32f3ca407bb71f5ea14bc623be51a6ba01))
+* logging ([f5e18f1](https://github.com/CoCreate-app/CoCreate-nginx/commit/f5e18f1aee274d78fdc624caaffd504a03dab4e6))
+* nginx.conf formating ([0c87d43](https://github.com/CoCreate-app/CoCreate-nginx/commit/0c87d43536017668e089629d9894fedbecd0c606))
+* removed dev console.log ([fcd5fe0](https://github.com/CoCreate-app/CoCreate-nginx/commit/fcd5fe0dc9fdb9159531ac51f0f7a71363593b02))
+* update log message ([36e55af](https://github.com/CoCreate-app/CoCreate-nginx/commit/36e55afe35e9e42a05c5efb19ac3a296882ead0a))
+
+
+### Features
+
+* bumped CoCreate dependencies to their latest versions ([87643b4](https://github.com/CoCreate-app/CoCreate-nginx/commit/87643b423b1ac62f235bf2599befeb2d38a72b0c))
+
 # [1.2.0](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.1.5...v1.2.0) (2024-01-03)
 
 
