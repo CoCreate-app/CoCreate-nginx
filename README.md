@@ -1,13 +1,20 @@
 # CoCreate-nginx
 
-A convenient chain handler allows user to chain multiple CoCreate components together. When one action is complete next one will start. The sequence goes untill all nginx completed. Grounded on Vanilla javascript, easily configured using HTML5 attributes and/or JavaScript API. Take it for a spin in our [playground!](https://cocreate.app/docs/nginx)
+CoCreate-nginx is an innovative module designed to automate the full lifecycle management of NGINX web servers. It simplifies the processes of installation, configuration, startup, and dynamic reloading based on the application's needs, making it an indispensable tool for developers and system administrators.
 
 ![minified](https://img.badgesize.io/https://cdn.cocreate.app/nginx/latest/CoCreate-nginx.min.js?style=flat-square&label=minified&color=orange)
 ![gzip](https://img.badgesize.io/https://cdn.cocreate.app/nginx/latest/CoCreate-nginx.min.js?compression=gzip&style=flat-square&label=gzip&color=yellow)
 ![brotli](https://img.badgesize.io/https://cdn.cocreate.app/nginx/latest/CoCreate-nginx.min.js?compression=brotli&style=flat-square&label=brotli)
-![GitHub latest release](https://img.shields.io/github/v/release/CoCreate-app/CoCreate-action?style=flat-square)
-![License](https://img.shields.io/github/license/CoCreate-app/CoCreate-action?style=flat-square)
+![GitHub latest release](https://img.shields.io/github/v/release/CoCreate-app/CoCreate-nginx?style=flat-square)
+![License](https://img.shields.io/github/license/CoCreate-app/CoCreate-nginx?style=flat-square)
 ![Hiring](https://img.shields.io/static/v1?style=flat-square&label=&message=Hiring&color=blueviolet)
+
+## Features
+
+-   **Automated Installation:** Automatically installs NGINX on your system, removing manual setup steps.
+-   **Dynamic Configuration:** Provides a simple API to configure NGINX dynamically, adapting to application requirements.
+-   **Auto-Reloading:** Automatically reloads NGINX configuration without downtime, ensuring seamless updates.
+-   **Easy Startup:** Manages NGINX startup procedures to ensure your web server is always ready when your application is.
 
 ![CoCreate-nginx](https://cdn.cocreate.app/docs/CoCreate-nginx.gif)
 
