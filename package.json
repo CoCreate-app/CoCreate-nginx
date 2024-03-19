@@ -5,11 +5,10 @@
   "keywords": [
     "nginx",
     "cocreate",
-    "NGINX",
     "automation",
-    "web server",
+    "web-server",
     "configuration",
-    "dynamic reloading",
+    "dynamic-reloading",
     "installation",
     "management"
   ],
