@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.2...v1.3.3) (2024-03-19)
+
+
+### Bug Fixes
+
+* replaced keyword spaces with hyphens and lowercase letters only ([7d6fd9c](https://github.com/CoCreate-app/CoCreate-nginx/commit/7d6fd9cb5846cfe8fe167c30b3accf323ba494f4))
+
 ## [1.3.2](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.1...v1.3.2) (2024-03-18)
 
 
