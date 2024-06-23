@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.4...v1.3.5) (2024-06-23)
+
+
+### Bug Fixes
+
+* update dependencies ([f3eaa6d](https://github.com/CoCreate-app/CoCreate-nginx/commit/f3eaa6d8143dbe1c688a5c6fa161b4210d1c6578))
+
 ## [1.3.4](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.3...v1.3.4) (2024-06-23)
 
 
