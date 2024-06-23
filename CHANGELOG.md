@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.3...v1.3.4) (2024-06-23)
+
+
+### Bug Fixes
+
+* demo css ([e01e4bc](https://github.com/CoCreate-app/CoCreate-nginx/commit/e01e4bc6ce1a2190089983ccf2569953332f6c45))
+
 ## [1.3.3](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.2...v1.3.3) (2024-03-19)
 
 
