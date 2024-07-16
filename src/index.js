@@ -27,7 +27,7 @@ class CoCreateNginx {
                     await exec('echo "deb-src http://nginx.org/packages/ubuntu $(lsb_release -cs) nginx" | sudo tee -a /etc/apt/sources.list.d/nginx.list');
                     await exec('curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -');
                     await exec('sudo apt-get update');
-                    await exec('sudo apt-get install -y nginx');
+                    await exec('sudo apt-get install -y nginx-full');
                     await exec("sudo ufw allow 'Nginx Full'");
                     // await exec('sudo apt-get update && sudo apt-get install -y nginx');
                     // await exec("sudo ufw allow 'Nginx Full'");
