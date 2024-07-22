@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.8...v1.3.9) (2024-07-22)
+
+
+### Bug Fixes
+
+* create site-available and sites-enabled directory if they do not exist ([94acc87](https://github.com/CoCreate-app/CoCreate-nginx/commit/94acc872ae2b50d8414931e332a26aa0f5f6049c))
+
 ## [1.3.8](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.7...v1.3.8) (2024-07-16)
 
 
