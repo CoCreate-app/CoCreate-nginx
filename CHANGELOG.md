@@ -1,3 +1,10 @@
+## [1.3.10](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.9...v1.3.10) (2024-07-22)
+
+
+### Bug Fixes
+
+* comment ufw and niginx full as it throws an error ([d49bb79](https://github.com/CoCreate-app/CoCreate-nginx/commit/d49bb79514cd047b25b3844bed9d7d7fe988cdf1))
+
 ## [1.3.9](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.8...v1.3.9) (2024-07-22)
 
 
