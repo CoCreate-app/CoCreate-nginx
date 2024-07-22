@@ -29,8 +29,8 @@ class CoCreateNginx {
 
                     await exec('sudo apt-get update');
                     await exec('sudo apt-get install -y nginx');
-                    await exec('sudo apt-get install -y ufw');
-                    await exec("sudo ufw allow 'Nginx Full'");
+                    // await exec('sudo apt-get install -y ufw');
+                    // await exec("sudo ufw allow 'Nginx Full'");
 
                     // await exec('sudo apt-get update && sudo apt-get install -y nginx');
                     // await exec("sudo ufw allow 'Nginx Full'");
