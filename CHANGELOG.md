@@ -1,3 +1,10 @@
+## [1.3.11](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.10...v1.3.11) (2024-07-22)
+
+
+### Bug Fixes
+
+* install niginx-full ([867a638](https://github.com/CoCreate-app/CoCreate-nginx/commit/867a638901ee8ffb76509b4c62091db841189287))
+
 ## [1.3.10](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.9...v1.3.10) (2024-07-22)
 
 
