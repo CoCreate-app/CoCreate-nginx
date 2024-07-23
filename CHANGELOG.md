@@ -1,3 +1,10 @@
+## [1.3.12](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.11...v1.3.12) (2024-07-23)
+
+
+### Bug Fixes
+
+* option -y when installing ([f97b354](https://github.com/CoCreate-app/CoCreate-nginx/commit/f97b354ba1ef7ed6d39d7772fc4e320de2bbcc72))
+
 ## [1.3.11](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.10...v1.3.11) (2024-07-22)
 
 
