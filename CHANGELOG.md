@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.12...v1.4.0) (2024-11-04)
+
+
+### Bug Fixes
+
+* prettier.config options ([a9e86d7](https://github.com/CoCreate-app/CoCreate-nginx/commit/a9e86d7ac3d98e14083afdc8eea44afa717e3c5a))
+
+
+### Features
+
+* add prettier.config.js and format files ([34b56e6](https://github.com/CoCreate-app/CoCreate-nginx/commit/34b56e6752d504d267fe47a31f6af78913a1f87e))
+
 ## [1.3.12](https://github.com/CoCreate-app/CoCreate-nginx/compare/v1.3.11...v1.3.12) (2024-07-23)
 
 

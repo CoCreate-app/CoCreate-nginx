@@ -1,6 +1,6 @@
 {
   "name": "@cocreate/nginx",
-  "version": "1.3.12",
+  "version": "1.4.0",
   "description": "Automates NGINX server management tasks including installation, configuration, startup, and dynamic reloading in response to application changes. Designed to streamline web server setup and management.",
   "keywords": [
     "nginx",
